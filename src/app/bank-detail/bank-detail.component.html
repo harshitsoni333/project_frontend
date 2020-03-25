@@ -1,0 +1,18 @@
+<h2 class="bank"> <i style="font-size:35px" class="fa bank">&#xf19c;</i>Bank Details</h2> 
+
+<hr/>
+<div *ngIf="bank">
+  <div>
+    <label><b>Bank Code: </b></label> {{bank.bankCode}}
+  </div>
+  <div>
+    <label><b>Bank Name: </b></label> {{bank.bankName}}
+  </div>
+  <div>
+    <label><b>Contacts: </b></label> {{bank.contacts}}
+  </div>  
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Bank List</button><br>

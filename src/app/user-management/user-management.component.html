@@ -1,0 +1,103 @@
+<div class="body">
+<h1 class="user">User Management</h1>
+<br>
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<!--
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<br><br>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div> <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder= "Search">
+        </div>
+        <br>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th></th>
+                    <th (click)="sort('ID')">ID&#9662;</th>
+                    <th (click)="sort('firstName')">First Name&#9662;</th>
+                    <th (click)="sort('lastName')">Last Name&#9662;</th>
+                    <th (click)="sort('email')">Email&#9662;</th>
+                    <th (click)="sort('profile')">Profile&#9662;</th>
+                    <th *ngIf="isAdmin==='true'">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let users of user | async | filter:searchText | orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
+                        <td><input #{{users.id}} [(ngModel)]="users.selected" type="checkbox"></td>
+                        <td>{{users.id}}</td>
+                        <td>{{users.firstName}}</td>
+                        <td>{{users.lastName}}</td>
+                        <td>{{users.email}}</td>
+                        <td>{{users.profile}}</td>
+                        <td *ngIf="isAdmin==='true'">
+                            <button (click)="deleteUser(users.id)" class="btn btn-danger">Delete</button>
+                            <button (click)="updateUser(users.id)" class="btn btn-success">Update</button>
+                            <button (click)="detailUser(users.id)" class="btn btn-info">Detail</button>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </table>
+        </div>
+    </div>
+</div>
+-->
+
+
+
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+        </div>
+        <div> <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder= "Search">
+        </div>
+
+        <br>
+        
+        <table class="table table-bordered" width="800" cellspacing="0" cellpadding="0">
+            <thead class="thead-dark">
+                <tr>
+                    <th (click)="sort('ID')">ID &#8661;</th>
+                    <th (click)="sort('firstName')">First Name &#8661;</th>
+                    <th (click)="sort('lastName')">Last Name &#8661;</th>
+                    <th (click)="sort('username')">Username &#8661;</th>
+                    <th (click)="sort('profile')">Profile &#8661;</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let users of user | async | filter:searchText | orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
+                    <td *ngIf="isAdmin==='true'"><input #{{users.id}} [(ngModel)]="users.selected" type="checkbox" name="user"></td>
+                    <td>{{users.id}}</td>
+                    <td>{{users.firstName}}</td>
+                    <td>{{users.lastName}}</td>
+                    <td>{{users.username}}</td>
+                    <td>{{users.profile}}</td>
+                    <td>
+                        <button (click)="detailUser(users.username)" class="detail" title="Detail" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></button>
+                        <button *ngIf="isAdmin==='Admin'" (click)="updateUser(users.username)" class="update" title="Update" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
+                        <button *ngIf="isAdmin==='Admin'" (click)="clickMethod(users.username)" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+    </div>
+    <p *ngIf="isAdmin==='Admin'">
+        <!--
+        <button class="btn btn-danger deleteAll" title="Delete" data-toggle="tooltip" (click)="deleteAll()">Delete</button>
+        -->
+
+        <a routerLink="/user-form" class="btn btn-primary add-new">New User</a>
+    </p>
+</div>     
+</div>

@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-6">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="bankCode">Bank Code</label>
+            <input #bankCode="ngModel" id="bankCode" type="text" class="form-control"  required [(ngModel)]="bank.bankCode" name="bankCode">
+            <div class="alert alert-danger" *ngIf="bankCode.touched && bankCode.invalid">
+                Bank Code is required.
+            </div>
+        </div>
+    <div class="form-group">
+        <label for="bankName">Bank Name</label>
+        <input #bankName="ngModel" id="bankName" type="text" class="form-control"  required [(ngModel)]="bank.bankName" name="bankName">
+        <div class="alert alert-danger" *ngIf="bankName.touched && bankName.invalid">
+            Bank Name is required.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="bankContact">Contacts</label>
+        <input #contacts="ngModel" id="contacts" type="text" class="form-control"  required [(ngModel)]="bank.contacts" name="contacts" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        <div class="alert alert-danger" *ngIf="contacts.touched && contacts.invalid">
+            <div *ngIf="contacts.errors.required">Bank Contact is required.</div>
+            <div [hidden]="!contacts.errors?.pattern">Bank Contact is invalid</div>
+        </div>
+    </div>
+    <button class="btn btn-primary">Save</button>
+    <input type="button" class="btn btn-info cancel" value="Cancel" (click)="cancel()">
+</form>
+</div>
+
+
+<div class="col-md-6">
+    <div class="card" style="width: 18rem;">
+      <img [src]="imageUrl.value" class="card-img-top">
+        <div class="card-body">
+          <h4 class="card-title" *ngIf="bank.bankCode">{{bank.bankCode}}</h4>
+          <h5 class="card-title" *ngIf="bank.bankName">{{bank.bankName}}</h5>
+          <h6 class="card-title" *ngIf="bank.contacts">{{bank.contacts}}</h6>
+        </div>
+      </div>
+</div>
+
+</div>

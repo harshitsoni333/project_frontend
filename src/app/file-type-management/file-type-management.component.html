@@ -1,0 +1,60 @@
+<div class="body">
+    <h1 class="fileType">File Type Management</h1>
+    <br>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+            </div>
+            <div> <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                    placeholder="Search">
+            </div>
+
+            <br>
+
+            <table class="table table-bordered" width="800" cellspacing="0" cellpadding="0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th (click)="sort('ID')">ID &#8661;</th>
+                        <th (click)="sort('fileCode')">TypeCode &#8661;</th>
+                        <th (click)="sort('description')">Description &#8661;</th>
+                        <th (click)="sort('isBankFile')">Is Bank File &#8661;</th>
+                        <th (click)="sort('isKMT54')">Is KMT54 &#8661;</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let files of fileType | async | filter:searchText | orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
+                        <td *ngIf="isAdmin==='true'"><input #{{files.id}} [(ngModel)]="files.selected" type="checkbox">
+                        </td>
+                        <td>{{files.id}}</td>
+                        <td>{{files.fileTypeCode}}</td>
+                        <td>{{files.description}}</td>
+                        <td>{{files.isBankFile}}</td>
+                        <td>{{files.isKMT54}}</td>
+                        <td>
+                            <button (click)="detailFileType(files.fileTypeCode)" class="detail" title="Detail"
+                                data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></button>
+                            <button *ngIf="isAdmin==='Admin'" (click)="updateFileType(files.fileTypeCode)" class="update" title="Update"
+                                data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
+                            <button *ngIf="isAdmin==='Admin'" (click)="clickMethod(files.fileTypeCode)" class="delete" title="Delete"
+                                data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+            <p *ngIf="isAdmin==='Admin'">
+                <!--
+                <button class="btn btn-danger deleteAll" title="Delete" data-toggle="tooltip">Delete</button>
+                -->
+
+                <a routerLink="/fileType-form" class="btn btn-primary add-new">New File Type</a>
+            </p>
+        </div>
+    </div>

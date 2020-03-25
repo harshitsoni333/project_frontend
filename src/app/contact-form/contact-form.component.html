@@ -1,0 +1,141 @@
+<!--
+<div class="row">
+    <div class="col-md-6">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="applicationCode">Application Code</label>
+                <input #applicationCode="ngModel" id="applicationCode" type="text" class="form-control" required
+                    [(ngModel)]="contact.applicationCode" name="applicationCode" placeholder="Application Code">
+                <div class="alert alert-danger" *ngIf="applicationCode.touched && applicationCode.invalid">
+                    <div *ngIf="applicationCode.errors.required">Application Code is required.</div>
+                    <div *ngIf="applicationCode.errors.url">Application Code is invalid.</div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="fileCode">File Code</label>
+                <input #fileCode="ngModel" id="fileCode" type="text" class="form-control" required
+                    [(ngModel)]="contact.fileCode" name="fileCode" placeholder="File Code">
+                <div class="alert alert-danger" *ngIf="fileCode.touched && fileCode.invalid">
+                    <div *ngIf="fileCode.errors.required">File Code is required.</div>
+                    <div *ngIf="fileCode.errors.url">File Code is invalid.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fileTypeCode">File Type Code</label>
+                <input #fileTypeCode="ngModel" id="fileTypeCode" type="text" class="form-control" required
+                    [(ngModel)]="contact.fileTypeCode" name="fileTypeCode" placeholder="File Type Code">
+                <div class="alert alert-danger" *ngIf="fileTypeCode.touched && fileTypeCode.invalid">
+                    <div *ngIf="fileTypeCode.errors.required">File Type Code is required.</div>
+                    <div *ngIf="fileTypeCode.errors.url">File Type Code is invalid.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="contacts">Contacts</label>
+                <input #contacts="ngModel" id="contacts" type="text" class="form-control" required
+                    [(ngModel)]="contact.contacts" name="contacts" placeholder="Contacts">
+                <div class="alert alert-danger" *ngIf="contacts.touched && contacts.invalid">
+                    <div *ngIf="contacts.errors.required">Contacts is required.</div>
+                    <div *ngIf="contacts.errors.url">Contacts is invalid.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input #firstName="ngModel" id="firstName" type="text" class="form-control" required
+                    [(ngModel)]="contact.firstName" name="firstName" placeholder="First Name">
+                <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+                    <div *ngIf="firstName.errors.required">First Name is required.</div>
+                    <div *ngIf="firstName.errors.url">First Name is invalid.</div>
+                </div>
+            </div>
+            <br>
+
+            <p>
+                <button class="btn btn-primary save">Save</button>
+                <input type="button" class="btn btn-info cancel" value="Cancel" (click)="cancel()">
+            </p>
+        </form>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="card" style="width: 18rem;">
+            <img [src]="imageUrl.value" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title" *ngIf="contact.applicationCode">{{contact.applicationCode}}</h5>
+                <h6 class="card-title" *ngIf="contact.fileCode">{{contact.fileCode}}</h6>
+                <p class="card-text" *ngIf="contact.fileTypeCode">{{contact.fileTypeCode}}</p>
+                <p class="card-text" *ngIf="contact.contacts">{{contact.contacts}}</p>
+                <p class="card-text" *ngIf="contact.firstName">{{contact.firstName}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+
+<div class="row">
+    <div class="col-md-6">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="Application Code">Application Code</label>
+                <select class="browser-default custom-select" [(ngModel)]="contact.applicationCode" name="applicationCode" (change)="getApplicationContacts()">
+                    <option style="display:none"></option>
+                    <option *ngFor="let applications of application | async" [value]="applications.applicationCode">
+                        {{applications.applicationCode}}
+                    </option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                <label for="File Code">File Code</label>
+                <select class="browser-default custom-select" [(ngModel)]="contact.fileCode" name="fileCode" (change)="getFileContacts()">
+                    <option style="display:none"></option>
+                    <option *ngFor="let files of file | async" [value]="files.fileCode">
+                        {{files.fileCode}}
+                    </option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                <label for="File Type Code">File Type Code</label>
+                <select class="browser-default custom-select" [(ngModel)]="contact.fileTypeCode" name="fileTypeCode">
+                    <option style="display:none"></option>
+                    <option *ngFor="let filesType of fileType | async" [value]="filesType.fileTypeCode">
+                        {{filesType.fileTypeCode}}
+                    </option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                <label for="contacts">Contacts</label>
+                <textarea class="form-control" id="contacts" rows="3" [(ngModel)]="contact.contacts" name="contacts"></textarea>
+            </div>
+            <br>
+
+            <p>
+                <button class="btn btn-primary save">Save</button>
+                <input type="button" class="btn btn-info cancel" value="Cancel" (click)="cancel()">
+                <input type="button" class="btn btn-info clear" value="Clear" (click)="clear()">
+            </p>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card" style="width: 18rem;">
+            <img [src]="imageUrl.value" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title" *ngIf="contact.applicationCode">{{contact.applicationCode}}</h5>
+                <h6 class="card-title" *ngIf="contact.fileCode">{{contact.fileCode}}</h6>
+                <p class="card-text" *ngIf="contact.fileTypeCode">{{contact.fileTypeCode}}</p>
+                <p class="card-text" *ngIf="contact.contacts">{{contact.contacts}}</p>
+                <p class="card-text" *ngIf="contact.firstName">{{contact.firstName}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+

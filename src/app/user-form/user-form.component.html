@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-md-6">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input #firstName="ngModel" id="firstName" type="text" class="form-control" required
+                    [(ngModel)]="user.firstName" name="firstName" placeholder="First Name">
+                <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+                    <div *ngIf="firstName.errors.required">First Name is required.</div>
+                    <div *ngIf="firstName.errors.url">First Name is invalid.</div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input #lastName="ngModel" id="lastName" type="text" class="form-control" required
+                    [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name">
+                <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+                    <div *ngIf="lastName.errors.required">Last Name is required.</div>
+                    <div *ngIf="lastName.errors.url">Last Name is invalid.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Email</label>
+                <input #username="ngModel" id="username" type="username" class="form-control" required [(ngModel)]="user.username"
+                    name="username" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" (ngModelChange)="checkUserName($event)">
+                <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
+                    <div *ngIf="username.errors.required">Email is required.</div>
+                    <div *ngIf="username.errors.url">Email is invalid.</div>
+                    <div [hidden]="!username.errors?.pattern">Email is invalid</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="profile">Profile</label>
+                <input #profile="ngModel" id="profile" type="text" class="form-control" required
+                    [(ngModel)]="user.profile" name="profile" placeholder="Profile">
+                <div class="alert alert-danger" *ngIf="profile.touched && profile.invalid">
+                    <div *ngIf="profile.errors.required">Profile is required.</div>
+                    <div *ngIf="profile.errors.url">Profile is invalid.</div>
+                </div>
+            </div>
+            <br>
+
+
+
+            <!--
+    <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input #imageUrl="ngModel" ngModel name="imageUrl" id="imageUrl" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+            <div *ngIf="imageUrl.errors.required">ImageUrl is required.</div>
+            <div *ngIf="imageUrl.errors.url">ImageUrl is invalid.</div>
+        </div>
+    </div>
+-->
+            <p>
+                <button class="btn btn-primary save" [disabled]="!validUsername">Save</button>
+                <input type="button" class="btn btn-info cancel" value="Cancel" (click)="cancel()">
+            </p>
+        </form>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="card" style="width: 18rem;">
+            <img [src]="imageUrl.value" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title" *ngIf="user.firstName">{{user.firstName}}</h5>
+                <h6 class="card-title" *ngIf="user.lastName">{{user.lastName}}</h6>
+                <p class="card-text" *ngIf="user.username">{{user.username}}</p>
+                <p class="card-text" *ngIf="user.profile">{{user.profile}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<form [formGroup]="myForm" (ngSubmit)="submitForm(myForm)">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput">First Name</label>
+            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="First name"
+                formControlName="firstName">
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Last Name</label>
+            <input type="text" class="form-control" id="inlineFormInput" placeholder="Last name"
+                formControlName="lastName">
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Email</label>
+            <input type="text" class="form-control" id="inlineFormInput" placeholder="Email"
+                formControlName="email">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2" [disabled]="!myForm.valid">Save</button>
+        </div>
+    </div>
+</form>
+-->

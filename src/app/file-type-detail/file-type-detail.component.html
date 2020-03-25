@@ -1,0 +1,21 @@
+<h2 class="fileType"><i style="font-size:35px" class="fa fileType">&#xf15c;</i>File Type Details</h2> 
+
+<hr/>
+<div *ngIf="fileType">
+  <div>
+    <label><b>File Type Code: </b></label> {{fileType.fileTypeCode}}
+  </div>
+  <div>
+    <label><b>Description: </b></label> {{fileType.description}}
+  </div> 
+  <div>
+    <label><b>Is Bank File: </b></label> {{fileType.isBankFile}}
+  </div> 
+  <div>
+    <label><b>Is KMT54: </b></label> {{fileType.isKMT54}}
+  </div> 
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to File Type List</button><br>

@@ -1,0 +1,22 @@
+<h2 class="contact"> <i style="font-size:35px" class="fa contactDetail">&#xf2b9;</i> Contact Details</h2> 
+
+<hr/>
+<div *ngIf="contact">
+  <div>
+    <label><b>Application Code: </b></label> {{contact.applicationCode}}
+  </div>
+  <div>
+    <label><b>File Code: </b></label> {{contact.fileCode}}
+  </div>
+  <div>
+    <label><b>File Type Code: </b></label> {{contact.fileTypeCode}}
+  </div> 
+  <div>
+    <label><b>Contacts: </b></label>  {{contact.contacts}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Contact List</button><br>
+

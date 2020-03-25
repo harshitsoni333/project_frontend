@@ -1,0 +1,104 @@
+<div class="body">
+    <h1 class="file">File Management</h1>
+    <br>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <!--
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div> <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder= "Search">
+        </div>
+        <br>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th (click)="sort('ID')">ID&#9662;</th>
+                    <th (click)="sort('fileCode')">Code&#9662;</th>
+                    <th (click)="sort('fileName')">Name&#9662;</th>
+                    <th (click)="sort('description')">Description&#9662;</th>
+                    <th (click)="sort('contacts')">Contacts&#9662;</th>
+                    <th *ngIf="isAdmin==='true'">Delete</th>
+                    <th *ngIf="isAdmin==='true'">Update</th>
+                    <th>Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let files of file | async | filter:searchText | orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
+                        <td>{{files.id}}</td>
+                        <td>{{files.fileCode}}</td>
+                        <td>{{files.fileName}}</td>
+                        <td>{{files.description}}</td>
+                        <td>{{files.contacts}}</td>
+                        <td *ngIf="isAdmin==='true'"><button (click)="deleteFile(files.id)" class="btn btn-danger">Delete</button></td>
+                        <td *ngIf="isAdmin==='true'"><button (click)="updateFile(files.id)" class="btn btn-success">Update</button></td>
+                        <td><button (click)="detailFile(files.id)" class="btn btn-info">Details</button></td>
+                    </tr>
+                </tbody>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </table>
+        </div>
+    </div>
+</div>
+-->
+
+
+
+
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+            </div>
+            <div> <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                    placeholder="Search">
+            </div>
+
+            <br>
+
+            <table class="table table-bordered" width="800" cellspacing="0" cellpadding="0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th (click)="sort('ID')">ID &#8661;</th>
+                        <th (click)="sort('fileCode')">Code &#8661;</th>
+                        <th (click)="sort('fileName')">Name &#8661;</th>
+                        <th (click)="sort('description')">Description &#8661;</th>
+                        <th (click)="sort('contacts')">Contacts &#8661;</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let files of file | async | filter:searchText | orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
+                        <td *ngIf="isAdmin==='true'"><input #{{files.id}} [(ngModel)]="files.selected" type="checkbox">
+                        </td>
+                        <td>{{files.id}}</td>
+                        <td>{{files.fileCode}}</td>
+                        <td>{{files.fileName}}</td>
+                        <td>{{files.description}}</td>
+                        <td>{{files.contacts}}</td>
+                        <td>
+                            <button (click)="detailFile(files.fileCode)" class="detail" title="Detail"
+                                data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></button>
+                            <button *ngIf="isAdmin==='Admin'" (click)="updateFile(files.fileCode)" class="update" title="Update"
+                                data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
+                            <button *ngIf="isAdmin==='Admin'" (click)="clickMethod(files.fileCode)" class="delete" title="Delete"
+                                data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+            <p *ngIf="isAdmin==='Admin'">
+                <!--
+<button class="btn btn-danger deleteAll" title="Delete" data-toggle="tooltip">Delete</button>
+                -->
+                
+                <a routerLink="/file-form" class="btn btn-primary add-new">New File</a>
+            </p>
+        </div>
+    </div>

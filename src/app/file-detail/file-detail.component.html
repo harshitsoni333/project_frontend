@@ -1,0 +1,21 @@
+<h2 class="file"> <i style="font-size:35px" class="fa file">&#xf15b;</i>File Details</h2> 
+
+<hr/>
+<div *ngIf="file">
+  <div>
+    <label><b>File Code: </b></label> {{file.fileCode}}
+  </div>
+  <div>
+    <label><b>File Name: </b></label> {{file.fileName}}
+  </div>
+  <div>
+    <label><b>Contacts: </b></label> {{file.contacts}}
+  </div>  
+  <div>
+    <label><b>Description: </b></label> {{file.description}}
+  </div> 
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to File List</button><br>

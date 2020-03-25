@@ -1,0 +1,18 @@
+<h2 class="application"> <i style="font-size:35px" class="fa application">&#xf0ae;</i>Application Details</h2> 
+
+<hr/>
+<div *ngIf="application">
+  <div>
+    <label><b>Application Code: </b></label> {{application.applicationCode}}
+  </div>
+  <div>
+    <label><b>Application Name: </b></label> {{application.applicationName}}
+  </div>
+  <div>
+    <label><b>Contacts: </b></label> {{application.contacts}}
+  </div>  
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Application List</button><br>

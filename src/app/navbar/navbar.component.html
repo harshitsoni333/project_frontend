@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand home" routerLink="/"><i style="font-size:24px" class="fa home" title="Home" data-toggle="tooltip">&#xf015;</i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+
+      </ul>
+
+      <ul class="navbar-nav navbar-right">
+
+        <li ngbDropdown class="nav-item dropdown administrator">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" *ngIf="basicAuthentication.isUserLoggedIn()" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">{{username}}</a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" routerLink="/logout" title="Logout" data-toggle="tooltip"><i style="font-size:20px" class="fa settings">&#xf013;</i>Settings<span class="sr-only">(current)</span></a>
+            <a class="dropdown-item" routerLink="/logout" title="Logout" data-toggle="tooltip"><i style="font-size:20px" class="fa logout">&#xf08b;</i>Logout<span class="sr-only">(current)</span></a>
+          </div>
+        </li>
+        
+        <li ngbDropdown class="nav-item dropdown administrator">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" *ngIf="basicAuthentication.isUserLoggedIn()" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Administrator</a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" routerLink="/user"><i style="font-size:15px" class="fa user">&#xf007;</i>User Management</a>
+            <a class="dropdown-item" routerLink="/bank"><i style="font-size:15px" class="fa bank">&#xf19c;</i>Bank Management</a>
+            <a class="dropdown-item" routerLink="/file"><i style="font-size:15px" class="fa file">&#xf15b;</i>File Management</a>
+            <a class="dropdown-item" routerLink="/fileType"><i style="font-size:15px" class="fa file">&#xf15c;</i>File Type Management</a>
+            <a class="dropdown-item" routerLink="/application"><i style="font-size:15px" class="fa application">&#xf0ae;</i>Application Management</a>
+          </div>
+        </li>
+
+        <li class="nav-item active contact">
+          <a class="nav-link ml-auto mr-1" *ngIf="basicAuthentication.isUserLoggedIn()" routerLink="/contact" title="Contact Management" data-toggle="tooltip">Contact Management<span class="sr-only">(current)</span></a>
+        </li>
+
+
+        <li class="nav-item active login">
+          <a class="nav-link ml-auto mr-1" *ngIf="!basicAuthentication.isUserLoggedIn()" routerLink="/login" title="Login" data-toggle="tooltip">Login<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>

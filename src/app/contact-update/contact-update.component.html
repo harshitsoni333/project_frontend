@@ -1,0 +1,57 @@
+
+<div class="row">
+    <div class="col-md-6">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="Application Code">Application Code</label>
+                <select class="browser-default custom-select" [(ngModel)]="contact.applicationCode" name="applicationCode" (change)="getApplicationContacts()">
+                    <option *ngFor="let applications of application | async" [value]="applications.applicationCode">
+                        {{applications.applicationCode}}
+                    </option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                <label for="File Code">File Code</label>
+                <select class="browser-default custom-select" [(ngModel)]="contact.fileCode" name="fileCode" (change)="getFileContacts()">
+                    <option *ngFor="let files of file | async" [value]="files.fileCode">
+                        {{files.fileCode}}
+                    </option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                <label for="File Type Code">File Type Code</label>
+                <select class="browser-default custom-select" [(ngModel)]="contact.fileTypeCode" name="fileTypeCode">
+                    <option *ngFor="let filesType of fileType | async" [value]="filesType.fileTypeCode">
+                        {{filesType.fileTypeCode}}
+                    </option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                <label for="contacts">Contacts</label>
+                <textarea class="form-control" id="contacts" rows="3" [(ngModel)]="contact.contacts" name="contacts"></textarea>
+            </div>
+
+            <br>
+
+            <p>
+                <button class="btn btn-primary save">Save</button>
+                <input type="button" class="btn btn-info cancel" value="Cancel" (click)="cancel()">
+                <input type="button" class="btn btn-info clear" value="Clear" (click)="clear()">
+            </p>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <div class="card" style="width: 18rem;">
+            <img [src]="imageUrl.value" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title" *ngIf="contact.applicationCode">{{contact.applicationCode}}</h5>
+                <h6 class="card-title" *ngIf="contact.fileCode">{{contact.fileCode}}</h6>
+                <p class="card-text" *ngIf="contact.fileTypeCode">{{contact.fileTypeCode}}</p>
+                <p class="card-text" *ngIf="contact.contacts">{{contact.contacts}}</p>
+            </div>
+        </div>
+    </div>
+</div>

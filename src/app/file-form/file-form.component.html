@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-md-6">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="fileCode">File Code</label>
+                <input #fileCode="ngModel" id="fileCode" type="text" class="form-control" required
+                    [(ngModel)]="file.fileCode" name="fileCode" placeholder="File Code">
+                <div class="alert alert-danger" *ngIf="fileCode.touched && fileCode.invalid">
+                    File Code is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fileName">File Name</label>
+                <input #fileName="ngModel" id="fileName" type="text" class="form-control" required
+                    [(ngModel)]="file.fileName" name="fileName" placeholder="File Name">
+                <div class="alert alert-danger" *ngIf="fileName.touched && fileName.invalid">
+                    File Name is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fileContact">Contacts</label>
+                <input #contacts="ngModel" id="contacts" type="text" class="form-control" required
+                    [(ngModel)]="file.contacts" name="contacts" placeholder="File Contacts" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" (ngModelChange)="checkEmail($event)">
+                    <div class="alert alert-danger" *ngIf="contacts.touched && contacts.invalid">
+                        <div *ngIf="contacts.errors.required">File Contact is required.</div>
+                        <div [hidden]="!contacts.errors?.pattern">File Contact is invalid</div>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="fileDescription">Description</label>
+                <input #description="ngModel" id="description" type="text" class="form-control" required
+                    [(ngModel)]="file.description" name="description" placeholder="File Description">
+                <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                    File Description is required.
+                </div>
+            </div>
+            <br>
+
+            <!--
+    <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input #imageUrl="ngModel" ngModel name="imageUrl" id="imageUrl" type="text" class="form-control" required url>
+        <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+            <div *ngIf="imageUrl.errors.required">Image is required.</div>
+            <div *ngIf="imageUrl.errors.url">Image is invalid.</div>
+        </div>
+    </div>
+-->
+            <p>
+                <button class="btn btn-primary save" [disabled]="!validEmail">Save</button>
+                <input type="button" class="btn btn-info cancel" value="Cancel" (click)="cancel()">
+            </p>
+        </form>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="card" style="width: 18rem;">
+            <img [src]="imageUrl.value" class="card-img-top">
+            <div class="card-body">
+                <h4 class="card-title" *ngIf="file.fileCode">{{file.fileCode}}</h4>
+                <h5 class="card-title" *ngIf="file.fileName">{{file.fileName}}</h5>
+                <h6 class="card-title" *ngIf="file.contacts">{{file.contacts}}</h6>
+                <p class="card-text" *ngIf="file.description">{{file.description}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>

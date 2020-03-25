@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-6">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="fileTypeCode">File Type Code</label>
+                <input #fileTypeCode="ngModel" id="fileTypeCode" type="text" class="form-control" required
+                    [(ngModel)]="fileType.fileTypeCode" name="fileTypeCode" placeholder="File Type Code">
+                <div class="alert alert-danger" *ngIf="fileTypeCode.touched && fileTypeCode.invalid">
+                    File Type Code is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fileDescription">Description</label>
+                <input #description="ngModel" id="description" type="text" class="form-control" required
+                    [(ngModel)]="fileType.description" name="description" placeholder="File Description">
+                <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                    File Description is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fileIsBankFile">IsBankFile</label>
+                <input #isBankFile="ngModel" id="isBankFile" type="boolean" class="form-control" required
+                    [(ngModel)]="fileType.isBankFile" name="isBankFile" placeholder="Is Bank File">
+                <div class="alert alert-danger" *ngIf="isBankFile.touched && isBankFile.invalid">
+                    Is File Bank is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fileIsKMT54">IsKMT54</label>
+                <input #isKMT54="ngModel" id="isKMT54" type="boolean" class="form-control" required
+                    [(ngModel)]="fileType.isKMT54" name="isKMT54" placeholder="Is KMT54">
+                <div class="alert alert-danger" *ngIf="isKMT54.touched && isKMT54.invalid">
+                    IsKMT54 is required.
+                </div>
+            </div>
+            <br>
+            <p>
+                <button class="btn btn-primary save">Save</button>
+                <input type="button" class="btn btn-info cancel" value="Cancel" (click)="cancel()">
+            </p>
+        </form>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="card" style="width: 18rem;">
+            <img [src]="imageUrl.value" class="card-img-top">
+            <div class="card-body">
+                <h4 class="card-title" *ngIf="fileType.fileTypeCode">{{fileType.fileTypeCode}}</h4>
+                <h5 class="card-title" *ngIf="fileType.description">{{fileType.description}}</h5>
+                <h6 class="card-title" *ngIf="fileType.isBankFile">{{fileType.isBankFile}}</h6>
+                <p class="card-text" *ngIf="fileType.isKMT54">{{fileType.isKMT54}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>

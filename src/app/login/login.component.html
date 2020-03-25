@@ -1,0 +1,62 @@
+
+<!--
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Login</h5>
+            <form class="form-signin">
+              <div class="form-label-group">
+                <label for="password">Username</label>
+                <input type="text" [(ngModel)]="username" name="username"  class="form-control" placeholder="Username" required autofocus><br>
+    
+              </div>
+
+              <div class="form-label-group">
+                <label for="password">Password</label>
+                <input type="password" [(ngModel)]="password" name="password"  class="form-control" placeholder="Password" required><br>
+                
+              </div>
+
+              <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id="customCheck1" name="isAdmin" [(ngModel)]="isAdmin">
+                <label class="custom-control-label" for="customCheck1">Admin</label>
+              </div>
+              <button type="button" class="btn btn-lg btn-primary btn-block text-uppercase" (click)="login()">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Login</h5>
+          <form (ngSubmit)="onSubmit()" class="form-signin">
+            <div class="form-label-group">
+              <label for="username">Username</label>
+              <input type="text" [(ngModel)]="loginuser.username" name="username"  class="form-control" placeholder="Username" required autofocus><br>
+  
+            </div>
+
+            <div class="form-label-group">
+              <label for="password">Password</label>
+              <input type="password" [(ngModel)]="loginuser.password" name="password"  class="form-control" placeholder="Password" required><br>
+              
+            </div>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase">Save</button>
+            <!--
+            <button class="btn btn-lg btn-primary" (click)="getPassword(loginuser.email)">Password</button>
+            -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

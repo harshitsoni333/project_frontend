@@ -1,0 +1,59 @@
+<div class="body">
+    <h1 class="bank">Bank Management</h1>
+    <br>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+            </div>
+            <div> <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                    placeholder="Search">
+            </div>
+
+            <br>
+
+            <table class="table table-bordered" width="800" cellspacing="0" cellpadding="0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th (click)="sort('ID')">ID &#8661;</th>
+                        <th (click)="sort('bankCode')">Code &#8661;</th>
+                        <th (click)="sort('bankName')">Name &#8661;</th>
+                        <th (click)="sort('contacts')">Contacts &#8661;</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let banks of bank | async | filter:searchText | orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
+                        <td *ngIf="isAdmin==='true'"><input #{{banks.id}} [(ngModel)]="banks.selected" type="checkbox">
+                        </td>
+                        <td>{{banks.id}}</td>
+                        <td>{{banks.bankCode}}</td>
+                        <td>{{banks.bankName}}</td>
+                        <td>{{banks.contacts}}</td>
+                        <td>
+                            <button (click)="detailBank(banks.bankCode)" class="detail" title="Detail"
+                                data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></button>
+                            <button *ngIf="isAdmin==='Admin'" (click)="updateBank(banks.bankCode)" class="update" title="Update"
+                                data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
+                            <button *ngIf="isAdmin==='Admin'" (click)="clickMethod(banks.bankCode)" class="delete" title="Delete"
+                                data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+            <p *ngIf="isAdmin==='Admin'">
+                <!--
+                <button class="btn btn-danger deleteAll" title="Delete" data-toggle="tooltip">Delete</button>
+                -->
+
+                <a routerLink="/bank-form" class="btn btn-primary add-new">New Bank</a>
+            </p>
+        </div>
+    </div>

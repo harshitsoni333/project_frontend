@@ -1,0 +1,53 @@
+thead>tr>th {
+    cursor: pointer;
+}
+table.table .form-control {
+    height: 32px;
+    line-height: 32px;
+    box-shadow: none;
+    border-radius: 2px;
+    table-layout: fixed;
+}
+table.table td button.delete {
+    color: #E34724;
+}
+table.table td i {
+    font-size: 19px;
+}
+table.table td button.update {
+    color: #FFC107;
+}
+table.table td button.detail {
+    color: #27C46B;
+}
+table.table td button {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+    min-width: 24px;
+} 
+table.table td{
+    white-space:pre 
+}
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.fileType{
+    text-align: center;
+    padding-top: 0px;
+    font-size: 30px;
+}
+a.add-new{
+    height: 40px;
+    text-align: center;
+    margin-left: 1px; 
+}
+.deleteAll{
+    height: 40px;
+    margin-right: 15px;
+}
+.body{
+    font-size: 10px;
+}

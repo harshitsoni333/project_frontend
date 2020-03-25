@@ -1,0 +1,34 @@
+.dropdown-toggle{
+    cursor: pointer;
+}
+i.bank{
+    margin-left: -3px;
+}
+i.file{
+    margin-left: -1px;
+}
+i.application{
+    margin-left: -3px;
+}
+.user{
+    margin-right: 18px;
+}
+.bank{
+    margin-right: 14px;
+}
+.file{
+    margin-right: 18px;
+}
+.application{
+    margin-right: 18px;
+    margin-top: -10px;
+}
+.logout{
+    margin-bottom: 8px;
+    margin-right: 7px;
+}
+.settings{
+    margin-bottom: 8px;
+    margin-right: 7px;
+    
+}
